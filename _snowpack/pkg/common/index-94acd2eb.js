@@ -86,4 +86,8 @@ var react = createCommonjsModule(function (module) {
 }
 });
 
-export { commonjsGlobal as a, createCommonjsModule as c, react as r };
+var React = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(null), react, {
+	'default': react
+}));
+
+export { React as R, commonjsGlobal as a, createCommonjsModule as c, react as r };
