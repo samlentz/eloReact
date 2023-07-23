@@ -55,23 +55,22 @@ var Action;
 })(Action || (Action = {}));
 const PopStateEventType = "popstate";
 /**
- * Hash history stores the location in window.location.hash. This makes it ideal
- * for situations where you don't want to send the location to the server for
- * some reason, either because you do cannot configure it or the URL space is
- * reserved for something else.
+ * Browser history stores the location in regular URLs. This is the standard for
+ * most web apps, but it requires some configuration on the server to ensure you
+ * serve the same app at multiple URLs.
  *
- * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createhashhistory
+ * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createbrowserhistory
  */
-function createHashHistory(options) {
+function createBrowserHistory(options) {
   if (options === void 0) {
     options = {};
   }
-  function createHashLocation(window, globalHistory) {
+  function createBrowserLocation(window, globalHistory) {
     let {
-      pathname = "/",
-      search = "",
-      hash = ""
-    } = parsePath(window.location.hash.substr(1));
+      pathname,
+      search,
+      hash
+    } = window.location;
     return createLocation("", {
       pathname,
       search,
@@ -80,39 +79,14 @@ function createHashHistory(options) {
     // state defaults to `null` because `window.history.state` does
     globalHistory.state && globalHistory.state.usr || null, globalHistory.state && globalHistory.state.key || "default");
   }
-  function createHashHref(window, to) {
-    let base = window.document.querySelector("base");
-    let href = "";
-    if (base && base.getAttribute("href")) {
-      let url = window.location.href;
-      let hashIndex = url.indexOf("#");
-      href = hashIndex === -1 ? url : url.slice(0, hashIndex);
-    }
-    return href + "#" + (typeof to === "string" ? to : createPath(to));
+  function createBrowserHref(window, to) {
+    return typeof to === "string" ? to : createPath(to);
   }
-  function validateHashLocation(location, to) {
-    warning(location.pathname.charAt(0) === "/", "relative pathnames are not supported in hash history.push(" + JSON.stringify(to) + ")");
-  }
-  return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options);
+  return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options);
 }
 function invariant(value, message) {
   if (value === false || value === null || typeof value === "undefined") {
     throw new Error(message);
-  }
-}
-function warning(cond, message) {
-  if (!cond) {
-    // eslint-disable-next-line no-console
-    if (typeof console !== "undefined") console.warn(message);
-    try {
-      // Welcome to debugging history!
-      //
-      // This error is thrown as a convenience so you can more easily
-      // find the source for a warning that appears in the console by
-      // enabling "pause on exceptions" in your JavaScript debugger.
-      throw new Error(message);
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
   }
 }
 function createKey() {
@@ -531,19 +505,18 @@ const neverSettledPromise = new Promise(() => {});
 const START_TRANSITION$1 = "startTransition";
 const startTransitionImpl$1 = React[START_TRANSITION$1];
 /**
- * A `<Router>` for use in web browsers. Stores the location in the hash
- * portion of the URL so it is not sent to the server.
+ * A `<Router>` for use in web browsers. Provides the cleanest URLs.
  */
-function HashRouter(_ref2) {
+function BrowserRouter(_ref) {
   let {
     basename,
     children,
     future,
     window
-  } = _ref2;
+  } = _ref;
   let historyRef = react.useRef();
   if (historyRef.current == null) {
-    historyRef.current = createHashHistory({
+    historyRef.current = createBrowserHistory({
       window,
       v5Compat: true
     });
@@ -585,4 +558,4 @@ var DataRouterStateHook$1;
   DataRouterStateHook["UseScrollRestoration"] = "useScrollRestoration";
 })(DataRouterStateHook$1 || (DataRouterStateHook$1 = {}));
 
-export { HashRouter };
+export { BrowserRouter };
