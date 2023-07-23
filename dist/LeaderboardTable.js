@@ -35,9 +35,10 @@ const LeaderboardTable = () => {
     rows,
     prepareRow
   } = useTable({columns, data});
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("button", {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("button", {
     onClick: fetchData,
-    className: "button"
+    className: "button",
+    style: {float: "right"}
   }, "Refresh Data"), /* @__PURE__ */ React.createElement("table", {
     ...getTableProps(),
     className: "table"
@@ -55,6 +56,6 @@ const LeaderboardTable = () => {
     }, row.cells.map((cell) => /* @__PURE__ */ React.createElement("td", {
       ...cell.getCellProps()
     }, cell.render("Cell"))));
-  }))));
+  })))));
 };
 export default LeaderboardTable;

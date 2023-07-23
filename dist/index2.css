@@ -2,9 +2,9 @@
  
 
 body {
-    background: linear-gradient(45deg, #282a36, #424a79, #8c62a4);
-    
-    height: 1%;
+    background: linear-gradient(45deg, #282a36, #424a79, #9368ac);
+    text-shadow: 2px 2px 5px #bd93f9;
+    height: 100%;
     animation: gradient 5s ease infinite;
     color: #f8f8f2;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,12 +19,12 @@ body {
   table {
     border-spacing: 0;
     width: 100%;
-    margin-bottom: 1rem;
     color: #8be9fd;
     background: linear-gradient(120deg, #44475a, #6272a4, #282a36);
     background-size: 600% 600%;
     border-radius: 0.25rem;
     overflow: hidden;
+    margin-bottom:0px;
   }
   
   th, td {
@@ -59,6 +59,7 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
+    width: 200px;
   }
   
   button:hover {
@@ -71,13 +72,48 @@ body {
         background-size: 300% 300%;
         font-size: 16px;
         padding: 10px 20px;
-        margin: 10px 2px;
+        margin: 4px 2px;
+        width:200px
 
 }
 label
 {
     color: #f8f8f2;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin: 10px 2px;
+    font-size: 20px;  
+    margin-left: 10px;
+}
+
+.MainPageDiv
+{
+  height:60px;
+
+}
+.submitbtn
+{
+  float:right;
+  top:0px;
+  width: 200px;
+}
+.leaderboard
+{
+  font-size: 40px;
+  margin:0px;
+  padding: 0px;
+  float:left;
+  top:0px;
+
+}
+.Footer
+{
+  position:relative;
+}
+h3
+{
+  float:right;
+  margin-right:5px;
+  margin-bottom:10px;
+}
+html
+{
+  height:100%
 }

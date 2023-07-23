@@ -9,9 +9,16 @@ function App() {
   };
   return /* @__PURE__ */ React.createElement("div", {
     className: "App"
-  }, !isModalOpen && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("h1", null, "Leaderboard"), /* @__PURE__ */ React.createElement(LeaderboardTable, null), /* @__PURE__ */ React.createElement("button", {
+  }, !isModalOpen && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
+    className: "MainPageDiv"
+  }, /* @__PURE__ */ React.createElement("h1", {
+    className: "leaderboard"
+  }, "Leaderboard"), /* @__PURE__ */ React.createElement("button", {
+    className: "submitbtn",
     onClick: () => setIsModalOpen(true)
-  }, "Submit Match")), isModalOpen && /* @__PURE__ */ React.createElement("div", {
+  }, "Submit Match")), /* @__PURE__ */ React.createElement(LeaderboardTable, null), /* @__PURE__ */ React.createElement("div", {
+    className: "Footer"
+  }, /* @__PURE__ */ React.createElement("h3", null, "created by sam"))), isModalOpen && /* @__PURE__ */ React.createElement("div", {
     className: "modal"
   }, /* @__PURE__ */ React.createElement("h1", null, "Submit"), /* @__PURE__ */ React.createElement("button", {
     onClick: handleCloseModal
