@@ -37,7 +37,7 @@ const LeaderboardTable = () => {
   } = useTable({columns, data});
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("button", {
     onClick: fetchData,
-    classname: "button"
+    className: "button"
   }, "Refresh Data"), /* @__PURE__ */ React.createElement("table", {
     ...getTableProps(),
     className: "table"
